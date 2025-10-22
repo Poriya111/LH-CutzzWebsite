@@ -769,19 +769,23 @@ body.light-mode #calendar {
 }
 
 body.light-mode .time {
-    background-color: #ffffff;
+    background-color: #ffffffaa;
     color: #222;
-    border: 1px solid #bdbdbd;
+    border: 1px solid #52525250;
 }
 
 body.light-mode .slot {
     background: #00b100;
     color: #fff;
+        border: 1px solid #ffffff90;
+
 }
 
 body.light-mode .booked {
-    background: #cccccc91 !important;
+    background: transparent !important;
     color: #000 !important;
+        border: 1px solid #ffffff90;
+
 }
 
 body.light-mode .afspraakSc2 {
@@ -850,13 +854,15 @@ body.light-mode .popupBtn1 {
     border: 1px solid #bdbdbd;
 }
 
-body.light-mode .popupBtn2 {
+body.light-mode .popupBtn2, 
+body.light-mode .calendar-info-close-btn {
     color: #fff;
     background-color: #222;
     border: 1px solid #bdbdbd;
 }
 
-body.light-mode .popupBtn1:hover {
+body.light-mode .popupBtn1:hover, 
+body.light-mode .calendar-info-close-btn:hover {
     background-color: #222;
     color: #fff;
     border: 1px solid #222;

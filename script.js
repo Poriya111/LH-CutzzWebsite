@@ -823,7 +823,7 @@ Extra Info: ${appointment.extraInfo || '-'}
 -----------------------------------
 
 !LET OP! (voor de klant)
-(Wat u ook aan deze e-mail toevoegt, zal NIET worden gelezen of beantwoord door de kapper. Om contact met ons op te nemen, vragen wij u om graag onze contactsectie op de website te bekijken.)
+(Wat u ook aan deze e-mail toevoegt, zal NIET worden gelezen of beantwoord door de kapper. Om contact met ons op te nemen, vragen wij u om graag onze contact sectie op de website te bekijken.)
 
 `.trim();
         
