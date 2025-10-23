@@ -46,21 +46,24 @@ const allTimes = [...new Set([
 ])].sort();
 // --- End New Slot Definitions ---
 
-// This is now hardcoded for frontend. has to be fetched from a backend.
-const bookedSlots = {
-  // "Di-17:00": true,
-  // "Vr-16:00": true,
-  // "Di-18:00": true
-};
+let bookedAppointmentSlots = {}; // Only holds customer appointments
+let adminBlockedSlots = {}; // Only holds admin-blocked slots
 
 // Build calendar grid
 function buildCalendar() {
     calendar.innerHTML = ''; // Clear previous calendar
     calendar.appendChild(document.createElement("div")); // empty corner
-    days.forEach(day => {
+
+    const todayIndex = (new Date().getDay() + 6) % 7; // Monday = 0, Sunday = 6
+
+    days.forEach((day, index) => {
         const header = document.createElement("div");
         header.className = "time";
-        header.textContent = day;
+        if (index === todayIndex) {
+            header.innerHTML = `<strong style="font-size: 22px; color: #ffffff;">${day}</strong>`;
+        } else {
+            header.textContent = day;
+        }
         calendar.appendChild(header);
     });
     allTimes.forEach(time => {
@@ -93,10 +96,13 @@ function buildCalendar() {
             const isPast = slotStartDate < now; // Use the global 'now' for consistency
             // --- End check ---
 
-            const slot = document.createElement("div");
-            if (bookedSlots[key]) {
+            const slot = document.createElement('div');
+            if (bookedAppointmentSlots[key]) {
                 slot.className = "slot booked";
                 slot.textContent = "Bezet";
+            } else if (adminBlockedSlots[key]) {
+                slot.className = "slot booked"; // Same style as booked
+                slot.textContent = "———";
             } else if (isPast) {
                 slot.className = "slot past";
                 slot.textContent = "Voorbij";
@@ -164,22 +170,38 @@ function appointmentToKey(appt) {
   const dayAbbr = ['Ma','Di','Wo','Do','Vr','Za','Zo'][dayIndex];
   return `${dayAbbr}-${appt.time}`;
 }
+
+// convert blocked slot to frontend key
+function blockedSlotToKey(slot) {
+  const date = new Date(slot.date + 'T00:00:00');
+  const dayIndex = Math.floor((date - firstDay) / (1000 * 60 * 60 * 24));
+  if (dayIndex < 0 || dayIndex > 6) return null; // Not in the current week
+  const dayAbbr = ['Ma','Di','Wo','Do','Vr','Za','Zo'][dayIndex];
+  return `${dayAbbr}-${slot.time}`;
+}
+
 // Fetch initial appointments from backend
 async function loadAppointmentsFromServer() {
   try {
     const res = await fetch(API_APPOINTMENTS);
     const json = await res.json();
-    if (json.success && Array.isArray(json.appointments)) {
-      // clear bookedSlots
-      for (const k in bookedSlots) delete bookedSlots[k];
+    if (json.success) {
+      bookedAppointmentSlots = {}; // Clear old data
+      adminBlockedSlots = {}; // Clear old data
+      // Process appointments
       json.appointments.forEach(appt => {
         const key = appointmentToKey(appt);
-        if (key) bookedSlots[key] = true;
+        if (key) bookedAppointmentSlots[key] = true;
+      });
+      // Process blocked slots
+      json.blockedSlots.forEach(slot => {
+        const key = blockedSlotToKey(slot);
+        if (key) adminBlockedSlots[key] = true;
       });
       buildCalendar();
       populateDateSelect();
     } else {
-      console.warn('No appointments data or unexpected response', json);
+      console.warn('Could not fetch availability:', json);
     }
   } catch (err) {
     console.error('Failed to load appointments', err);
@@ -187,23 +209,15 @@ async function loadAppointmentsFromServer() {
 }
 
 // When a new appointment is created on the server, the server emits 'appointment_created'
-socket.on('appointment_created', (appt) => {
-  try {
-    const key = appointmentToKey(appt);
-    if (key) {
-      bookedSlots[key] = true;
-      buildCalendar();
-      populateDateSelect();
-    }
-  } catch (err) {
-    console.error('Error handling appointment_created', err);
-  }
-});
+socket.on('appointment_created', () => loadAppointmentsFromServer());
+
+// When an admin blocks/unblocks a slot
+socket.on('slot_updated', () => loadAppointmentsFromServer());
 
 // When the week resets on the server
 socket.on('weekly_reset', () => {
-  // clear frontend bookedSlots and rebuild
-  for (const k in bookedSlots) delete bookedSlots[k];
+  bookedAppointmentSlots = {};
+  adminBlockedSlots = {};
   buildCalendar();
   populateDateSelect();
 });
@@ -296,7 +310,7 @@ function getAvailableSlots() {
     const availableDaySlots = daySlots.filter(slot => {
       // Check if booked
       const key = `${day}-${slot.startTime}`;
-      if (bookedSlots[key]) return false;
+      if (bookedAppointmentSlots[key] || adminBlockedSlots[key]) return false;
 
       // Check if in the past
       const slotStartDate = new Date(date);
@@ -833,9 +847,9 @@ Extra Info: ${appointment.extraInfo || '-'}
         alert('✅ Afspraak succesvol aangevraagd! Er wordt een e-mail geopend om de kapper op de hoogte te stellen.');
         window.open(gmailUrl, '_blank');
 
-        // The UI will be updated by the socket.io broadcast, but we can also update it immediately
+        // The UI will be updated by the socket.io broadcast, but we can also update it immediately for a faster feel
         const key = appointmentToKey(result.appointment);
-        if (key) bookedSlots[key] = true;
+        if (key) bookedAppointmentSlots[key] = true;
         buildCalendar();
         populateDateSelect();
         form.reset(); // Clear the form fields
