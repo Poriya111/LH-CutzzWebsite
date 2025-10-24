@@ -861,14 +861,14 @@ body.light-mode .calendar-info-close-btn {
     border: 1px solid #bdbdbd;
 }
 
-body.light-mode .popupBtn1:hover, 
-body.light-mode .calendar-info-close-btn:hover {
+body.light-mode .popupBtn1:hover {
     background-color: #222;
     color: #fff;
     border: 1px solid #222;
 }
 
-body.light-mode .popupBtn2:hover {
+body.light-mode .popupBtn2:hover,
+body.light-mode .calendar-info-close-btn:hover {
     background-color: #e0e0e0;
     color: #222;
     border: 1px solid #222;
@@ -1133,7 +1133,21 @@ body.light-mode .footerInfoTxt1 {
     .popupConfirm {
         font-size: 16px;
     }
-    .popupBtn1, .popupBtn2 {
+    .popupTxt22 {
+        width: 100%;
+        font-size: 18px;
+    }
+    .popupTxt22 .popup-intro-text {
+        font-size: 18px;
+    }
+    .popupTxt22 .popup-legend {
+        font-size: 16px;
+    }
+    .popupTxt22 .popup-form-info, .popupTxt22 .popup-tip {
+        font-size: 16px;
+    }
+
+    .popupBtn1, .popupBtn2, .calendar-info-close-btn {
         font-size: 20px;
         padding: 8px;
         margin-top: 20px;

@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
     appointmentsList.addEventListener('click', async (e) => {
         if (e.target.classList.contains('delete-btn')) {
             const apptId = e.target.dataset.id;
-            if (confirm('Weet u zeker dat u deze afspraak wilt verwijderen?')) {
+            if (confirm('Weet u zeker dat u deze afspraak wilt verwijderen? Zo ja, informeer de klant zo snel moeglijk!')) {
                 const token = sessionStorage.getItem('adminToken');
                 const res = await fetch(`${API_BASE}/appointments/${apptId}`, {
                     method: 'DELETE',

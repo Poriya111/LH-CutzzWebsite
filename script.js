@@ -124,18 +124,21 @@ if (infoBtn && infoPopup && infoPopupCloseBtn) {
   infoBtn.addEventListener('click', () => {
     const contentDiv = infoPopup.querySelector('.popupTxt22');
     contentDiv.innerHTML = `
-      <p style="font-size: 22px; margin-bottom: 20px;">
+      <p class="popup-intro-text">
         De kalender toont de actuele beschikbaarheid. De tijden aan de linkerkant geven de <strong>starttijd</strong> van een afspraak aan. Uw behandeling duurt maximaal tot de start van het volgende blok of (afspraak tijd).
       </p>
-      <div style="font-size: 20px; text-align: left; line-height: 1.6;">
+      <div class="popup-legend">
         <p><strong>Vrij (Groen):</strong> Dit tijdslot is beschikbaar. Selecteer dit moment in het formulier hieronder om uw afspraak te plannen.</p>
         <p><strong>Bezet (Grijs):</strong> Dit tijdslot is al gereserveerd door een andere klant.</p>
-        <p><strong>Voorbij (Donkergroen):</strong> Dit tijdslot ligt in het verleden en kan niet meer worden geboekt.</p>
+        <p><strong>Voorbij (Transparant groen):</strong> Dit tijdslot ligt in het verleden en kan niet meer worden geboekt.</p>
         <p><strong>——— (Niet beschikbaar):</strong> Op deze tijden is de kapper niet werkzaam en kunnen er geen afspraken worden gemaakt.</p>
       </div>
       <br>
-      <p style="font-size: 22px; margin-top: 10px;">
+      <p class="popup-form-info">
       In het formulier hieronder kunt u een afspraak maken <br> de onboekbare tijden zijn al automatisch onkiezbaar in het formulier.
+      </p>
+      <p class="popup-tip">
+        <strong>*Tip:</strong> De kalender wordt live bijgewerkt. Maar er kunnen soms kleine vertragingen zijn, dus vernieuw de pagina om de nieuwste beschikbaarheid te zien.
       </p>
     `;
     infoPopup.style.display = 'flex';
@@ -475,7 +478,7 @@ links[3].addEventListener('click', () => {
       <span>U ontvangt spoedig een bevestiging, waarmee uw afspraak definitief is.</span><br>
       <span>Wij zien u graag op het afgesproken tijdstip in onze salon.</span>
     </p>
-    <p class="bsnsPrtnRsLogo">PTC <span style="font-weight: lighter; font-size: 40px;">x</span> LH-Cutzz</p>
+    <p class="bsnsPrtnrsLogo">PTC <span style="font-weight: lighter; font-size: 40px;">x</span> LH-Cutzz</p>
   `;
   scrollToSection3();
   document.body.style.overflowY = 'hidden';
@@ -498,8 +501,8 @@ links[4].addEventListener('click', () => {
       <span><strong>Voert LH-Cutzz ook specifieke stijlen uit?</strong></span><br>
       <span>Zeker. Geef uw wensen aan bij het maken van de afspraak, dan bespreken we de mogelijkheden.</span>
     </p>
-    <p class="bsnsPrtnRsLogo">PTC <span style="font-weight: lighter; font-size: 40px;">x</span> LH-Cutzz</p>
-  `;
+<p class="bsnsPrtnrsLogo">PTC <span style="font-weight: lighter; font-size: 40px;">x</span> LH-Cutzz</p>
+    `;
   scrollToSection3();
   document.body.style.overflowY = 'hidden';
 });
@@ -521,8 +524,8 @@ links[5].addEventListener('click', () => {
       <span><strong>Contact</strong></span><br>
       <span>Voor vragen over ons privacybeleid of de voorwaarden kunt u contact opnemen via de contactgegevens op de website.</span>
     </p>
-    <p class="bsnsPrtnRsLogo">PTC <span style="font-weight: lighter; font-size: 40px;">x</span> LH-Cutzz</p>
-  `;
+<p class="bsnsPrtnrsLogo">PTC <span style="font-weight: lighter; font-size: 40px;">x</span> LH-Cutzz</p>
+    `;
   scrollToSection3();
   document.body.style.overflowY = 'hidden';
 });
@@ -543,8 +546,8 @@ links[6].addEventListener('click', () => {
       <span><strong>Snapchat:</strong> lhcutzz</span><br><br>
       <span>Adres van de shop wordt altijd bevestigd bij de afspraak.</span>
     </p>
-    <p class="bsnsPrtnRsLogo">PTC <span style="font-weight: lighter; font-size: 40px;">x</span> LH-Cutzz</p>
-  `;
+<p class="bsnsPrtnrsLogo">PTC <span style="font-weight: lighter; font-size: 40px;">x</span> LH-Cutzz</p>
+    `;
   scrollToSection3();
   document.body.style.overflowY = 'hidden';
 });
@@ -564,9 +567,9 @@ links[7].addEventListener('click', () => {
       <span><strong>Baard & Contour</strong> – Verzorgde baardtrim en strakke contouren.</span><br><br>
       <span>Heeft u een specifieke stijl in gedachten? Bespreek dit bij uw afspraak en wij zorgen voor een resultaat dat bij u past.</span><br>
       <span>Prijzen worden tijdens de afspraakbevestiging duidelijk gecommuniceerd.</span>
-    </p>
-    <p class="bsnsPrtnRsLogo">PTC <span style="font-weight: lighter; font-size: 40px;">x</span> LH-Cutzz</p>
-  `;
+      </p>
+<p class="bsnsPrtnrsLogo">PTC <span style="font-weight: lighter; font-size: 40px;">x</span> LH-Cutzz</p>
+      `;
   scrollToSection3();
   document.body.style.overflowY = 'hidden';
 });
@@ -583,9 +586,10 @@ links[8].addEventListener('click', () => {
       <span>Deze werkwijze stelt ons in staat om de planning efficiënt te beheren en wachttijden te minimaliseren.</span><br>
       <span>Bovendien garandeert het dat elke klant de persoonlijke aandacht krijgt die hij of zij verdient.</span><br><br>
       <span>Heeft u na het ontvangen van de bevestiging vragen over de route of bereikbaarheid? Neem dan gerust contact op voor nadere toelichting.</span>
-    </p>
-    <p class="bsnsPrtnRsLogo">PTC <span style="font-weight: lighter; font-size: 40px;">x</span> LH-Cutzz</p>
-  `;
+
+      </p>
+<p class="bsnsPrtnrsLogo">PTC <span style="font-weight: lighter; font-size: 40px;">x</span> LH-Cutzz</p>
+      `;
   scrollToSection3();
   document.body.style.overflowY = 'hidden';
 });
@@ -649,11 +653,8 @@ if (nvBrBtns.length > 2) {
 function renderGalleryVideos() {
   const galleryVideos = [
     { src: "img/gllryVid1.mp4", poster: "", muted: true, desc: "Low Taper Fade" },
-    { src: "img/gllryVid2.mp4", poster: "", muted: true, desc: "Low Taper Fade" },
     { src: "img/gllryVid3.mp4", poster: "", muted: true, desc: "Low Taper Fade" },
     { src: "img/gllryVid4.mp4", poster: "", muted: true, desc: "Low Taper Fade" },
-    { src: "img/gllryVid5.mp4", poster: "", muted: true, desc: "Low Taper Fade" },
-    { src: "img/gllryVid6.mp4", poster: "", muted: true, desc: "Low Taper Fade" },
   ];
   const galleryContainer = document.createElement('div');
   galleryContainer.className = "galleryVidC";
@@ -707,21 +708,7 @@ function renderGalleryVideos() {
 }
 
 const reviewClients = [
-  { name: "Jan de Vries", stars: 5, comment: "Top knipbeurt precies zoals ik wilde" },
-  { name: "Tom v** ***k", stars: 5, comment: "Altijd fijn hier super vriendelijk" },
-  { name: "Daan Visser", stars: 4, comment: "Goed maar duurde iets langer dan verwacht" },
-  { name: "Bram de Jong", stars: 5, comment: "Geweldig kom zeker terug 👍" },
-  { name: "Lucas", stars: 4, comment: "Prima knipbeurt niks bijzonders verder" },
-  { name: "Ravi Baldew", stars: 5, comment: "Super service voelde me meteen op mijn gemak" },
-  { name: "Quincy Belfort", stars: 5, comment: "Perfect kapsel deze keer 😁" },
-  { name: "Shaquille Lieuw", stars: 4, comment: "Goed maar had iets sneller gekund" },
-  { name: "Jairo Rambocus", stars: 5, comment: "Top knipbeurt vriendelijke sfeer" },
-  { name: "Kelvin Kanhai", stars: 4, comment: "Goed kleine puntjes voor verbetering" },
-  { name: "Piroz Ansari", stars: 5, comment: "Heel tevreden zoals altijd" },
-  { name: "Amir R*****i", stars: 4, comment: "Het was oké niet helemaal strak" },
-  { name: "Kian Mohammadi", stars: 5, comment: "Super precies zoals afgesproken 😎" },
-  { name: "Navid Farhadi", stars: 5, comment: "Altijd blij met het resultaat" },
-  { name: "Sami", stars: 4, comment: "Goed maar duurde iets langer dan normaal" }
+  // { name: "Jan de Vries", stars: 5, comment: "Top knipbeurt precies zoals ik wilde" },
 ];
 
 
@@ -836,9 +823,11 @@ Behandeling: ${appointment.treatment}
 Extra Info: ${appointment.extraInfo || '-'}
 -----------------------------------
 
-!LET OP! (voor de klant)
-(Wat u ook aan deze e-mail toevoegt, zal NIET worden gelezen of beantwoord door de kapper. Om contact met ons op te nemen, vragen wij u om graag onze contact sectie op de website te bekijken.)
-
+Let op:
+Dit is een automatisch gegenereerde e-mail ter notificatie.
+Wij verzoeken u vriendelijk om de inhoud van dit bericht niet te wijzigen.
+Eventuele toevoegingen of antwoorden op deze e-mail worden niet gelezen.
+Voor vragen of contact kunt u terecht op de contactpagina van onze website.
 `.trim();
         
         // Construct a Gmail-specific URL which is more reliable for opening in a new tab.
