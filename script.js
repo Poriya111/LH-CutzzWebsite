@@ -802,39 +802,8 @@ if (doorgaan) {
       });
       const result = await resp.json();
       if (result.success) {
-        // --- Generate and trigger mailto link ---
-        const barberEmail = 'ptc.p.a.m.original@gmail.com'; // Barber's email
-        const appointment = result.appointment;
-        const subject = `Nieuwe Afspraak: ${appointment.fullName} op ${appointment.date}`;
-
-        // Format the date for display
-        const displayDate = new Date(appointment.date + 'T00:00:00').toLocaleDateString('nl-NL', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-
-        const body = `
-Een nieuwe afspraak is zojuist aangevraagd.
-
-Details:
------------------------------------
-Naam: ${appointment.fullName}
-Telefoonnummer: ${appointment.phoneNumber}
-Datum: ${displayDate}
-Tijd: ${appointment.time}
-Behandeling: ${appointment.treatment}
-Extra Info: ${appointment.extraInfo || '-'}
------------------------------------
-
-Let op:
-Dit is een automatisch gegenereerde e-mail ter notificatie.
-Wij verzoeken u vriendelijk om de inhoud van dit bericht niet te wijzigen.
-Eventuele toevoegingen of antwoorden op deze e-mail worden niet gelezen.
-Voor vragen of contact kunt u terecht op de contactpagina van onze website.
-`.trim();
-        
-        // Construct a Gmail-specific URL which is more reliable for opening in a new tab.
-        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${barberEmail}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-        alert('✅ Afspraak succesvol aangevraagd! Er wordt een e-mail geopend om de kapper op de hoogte te stellen.');
-        window.open(gmailUrl, '_blank');
+        // The backend now handles notifications. Just show a success message to the user.
+        alert('✅ Afspraak succesvol aangevraagd! U ontvangt spoedig een bevestiging.');
 
         // The UI will be updated by the socket.io broadcast, but we can also update it immediately for a faster feel
         const key = appointmentToKey(result.appointment);

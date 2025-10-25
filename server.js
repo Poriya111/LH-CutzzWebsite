@@ -36,15 +36,24 @@ mongoose.connect(MONGO_URI, {
 const app = express();
 const server = http.createServer(app);
 
-const io = new Server(server, {
-  cors: {
-    origin: '*'
-  }
-});
+// For production, FRONTEND_URL should be a comma-separated list of allowed origins.
+// e.g., "https://www.lhcutzz.com,https://lhcutzz.netlify.app"
+const allowedOrigins = (process.env.FRONTEND_URL || 'http://localhost:3000').split(',');
 
-// middlewares
+const corsOptions = {
+  origin: function (origin, callback) {
+    // allow requests with no origin (like mobile apps or curl requests)
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+};
+
+const io = new Server(server, { cors: corsOptions });
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 
 // helper functions
 function getWeekRange(referenceDate = new Date()) {

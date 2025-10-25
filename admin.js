@@ -5,11 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const appointmentsList = document.getElementById('appointments-list');
     const adminCalendarContainer = document.getElementById('admin-calendar-container');
 
-    const API_BASE = 'http://localhost:4000/api/admin';
-    const SOCKET_BASE = 'http://localhost:4000';
+    const API_BASE = `${API_HOST}/api/admin`;
 
     // connect socket.io
-    const socket = io(SOCKET_BASE);
+    const socket = io(API_HOST);
 
     // Check if user is already logged in (token exists in sessionStorage)
     const token = sessionStorage.getItem('adminToken');
