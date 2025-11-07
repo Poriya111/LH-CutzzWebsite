@@ -135,7 +135,7 @@ if (infoBtn && infoPopup && infoPopupCloseBtn) {
       </div>
       <br>
       <p class="popup-form-info">
-      In het formulier hieronder kunt u een afspraak maken <br> de onboekbare tijden zijn al automatisch onkiezbaar in het formulier.
+      In het formulier hieronder kunt u een afspraak maken <br> de onboekbare tijden zijn al automatisch onkiezaar in het formulier.
       </p>
       <p class="popup-tip">
         <strong>*Tip:</strong> De kalender wordt live bijgewerkt. Maar er kunnen soms kleine vertragingen zijn, dus vernieuw de pagina om de nieuwste beschikbaarheid te zien.
@@ -163,7 +163,18 @@ const BACKEND_BASE = 'http://localhost:4000'; // change when deployed
 const API_APPOINTMENTS = BACKEND_BASE + '/api/appointments';
 
 // connect socket.io
-const socket = io(BACKEND_BASE);
+const socket = io(API_HOST, {
+    transports: ['websocket', 'polling'],
+    secure: true,
+    withCredentials: true,
+    reconnectionAttempts: 5,
+    timeout: 10000
+});
+
+// Add error handling
+socket.on('connect_error', (error) => {
+    console.error('Socket connection error:', error);
+});
 
 // convert appointment to frontend key: dayAbbr-time (e.g., "Di-17:00")
 function appointmentToKey(appt) {
