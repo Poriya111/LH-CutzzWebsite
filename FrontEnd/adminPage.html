@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Pagina</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="icon" type="image/jpeg" href="img/favicon.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="navBar">
+    <p class="logo">LH-Cutzz</p>
+    <a style="  background: transparent;
+  border: none;
+  font-size: 20px;
+  color: #ffffff90;
+  transition: all 0.2s ease-in-out;
+  align-items: center;
+  cursor: pointer;" href="index.html">Huis Pagina</a>
+  </nav>
+  <div id="admin-login-container" class="availChart">
+    <form id="admin-login-form" class="afspraakForm">
+      <h2 class="frmTxt1" style="text-align: center;">Admin Login</h2>
+      <label for="username">Gebruikersnaam</label>
+      <input type="text" id="username" name="username" placeholder="Gebruikersnaam" required autocomplete="username">
+      <label for="password">Wachtwoord</label>
+      <input type="password" id="password" name="password" placeholder="Wachtwoord" required autocomplete="current-password">
+      <input type="submit" value="Inloggen" class="verstuurForm">
+    </form>
+  </div>
+
+  <div id="admin-content">
+    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #444; padding-bottom: 10px; margin-bottom: 20px;">
+      <h2 style="margin: 0;">Adminpaneel</h2>
+      <button id="logout-btn" class="verstuurForm" style="margin: 0;">Uitloggen</button>
+    </div>
+    <h3>Alle Afspraken</h3>
+    <ul id="appointments-list" style="list-style: none; padding: 0;">
+      <!-- Appointments will be loaded here by JavaScript -->
+    </ul>
+
+    <div style="border-top: 1px solid #444; padding-top: 10px; margin-top: 30px;">
+      <h3>Beschikbaarheid Beheren</h3>
+      <p>Klik op een "Vrij" vakje om het te blokkeren, of op een "Geblokkeerd" vakje om het vrij te geven.</p>
+      <div id="admin-calendar-container"></div>
+    </div>
+
+  </div>
+
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script src="config.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

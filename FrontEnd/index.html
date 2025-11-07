@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LH-Cutzz</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="icon" type="image/jpeg" href="img/favicon.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="navBar">
+  <p class="logo">LH-Cutzz</p>
+    <div class="nvBrBtnC">
+    <button class="navBarBtn">Over LH-Cutzz</button>
+    <button class="navBarBtn">Contact</button>
+    <button class="navBarBtn">Galerij</button>
+    <button class="navBarBtn">Beoordelingen</button>
+   </div>
+  <button class="darkLightModeBtn"><i class="fa-solid fa-sun"></i></button>
+  </nav>
+  <img class="heroScImg" src="img/sample pic 1.jpg" alt="">
+    <section class="heroSc lazy-section">
+      <div class="introC">
+         <h1 class="introName">LH-Cutzz</h1>
+         <h2 class="introName2">—Hudaifa—</h2>
+         <br>
+         <div class="callToActionC">
+         <h3 class="introName3">Uw stijl, perfect afgewerkt met klasse</h3>
+         <button class="afspraakBtn">Maak een afspraak</button>
+         </div>
+      </div>
+    </section>
+       <div class="availChart">
+         <h2 class="availChartTxt1">Beschikbaarheid</h2>
+         <div id="calendar"></div>
+         <button class="infoAboutCalendar">Begrijp je niet hoe het werkt? Klick dan hier!</button>
+       </div>
+       
+    <div class="calendar-info-popup" style="display: none;">
+      <div class="confirmationPopup">
+        <h2 class="popupTxt1">Hoe werkt de kalender?</h2>
+        <div class="popupTxt22"></div>
+
+        <div class="popupBtnC">
+          <button class="calendar-info-close-btn">Oké, begrepen!</button>
+        </div>
+      </div>
+    </div>
+
+    <section class="afspraakSc2 lazy-section">
+      <div class="confirmationPopupC">
+        <div id="confirmationPopup" class="confirmationPopup">
+          <h2 class="popupTxt1">Bevestiging</h2>
+          <div class="popupTxt2"></div>
+          <div class="popupBtnC">
+            <button class="popupBtn1">Annuleren</button>
+            <button class="popupBtn2">Doorgaan</button>
+          </div>
+        </div>
+      </div>
+      
+      <form class="afspraakForm">
+        <br>
+         <h2 class="frmTxt1">Plan uw afspraak</h2>
+         <label for="input-i1">Volledige naam</label>
+         <input class="i1" id="input-i1" type="text" placeholder="Uw volledige naam" required>
+         <label for="input-i2">Telefoonnummer</label>
+         <input class="i2" id="input-i2" type="tel" placeholder="+31 6 12345678" required pattern="^\+\d{8,15}$">
+         <label for="input-i3">Datum</label>
+         <select class="i3" id="input-i3" required></select>
+         <label for="input-i4">Tijd</label>
+         <select class="i4" id="input-i4" required></select>
+         <label for="input-i5">Behandeling</label>
+         <input class="i5" id="input-i5" type="text" placeholder="Low taper, Buzz.." required>
+         <label for="input-i6">Extra informatie? (optioneel)</label>
+         <input class="i6" id="input-i6" type="text" placeholder="extra info..">
+         <input class="verstuurForm" id="submit" type="submit" value="Verstuur">
+        </form>
+        
+    </section>
+    <footer class="footer lazy-section">
+        <p class="bsnsPrtnrsLogo">PTC <span style="font-weight: lighter;
+        font-size: 40px;">x</span> LH-Cutzz</p>
+
+
+<div class="footerSc">
+  <button class="footerLinks link1">over LH-Cutzz</button>
+  <button class="footerLinks link2">samenwerking met PTC</button>
+  <button class="footerLinks link3">beschikbare tijden</button>
+</div>
+<div class="footerSc">
+  <button class="footerLinks link4">afspraken maken</button>
+  <button class="footerLinks link5">veel gestelde vragen</button>
+  <button class="footerLinks link6">privacy & voorwaarden</button>
+</div>
+<div class="footerSc">
+  <button class="footerLinks link7">contact</button>
+  <button class="footerLinks link8">diensten</button>
+  <button class="footerLinks link9">adres aanvragen</button>
+</div>
+<p class="copyRight">&copy; 2025 LH-Cutzz. Version 1.0 <a href="adminPage.html" style="color: #d9e6ff70; text-decoration: none; cursor: default;">—</a></p>
+
+  </footer>
+<div class="footerInfoPopup" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:#00000060; backdrop-filter: blur(20px); z-index:9999; overflow:auto;">
+  <button class="closeFooterPopup" style="position:absolute;top:20px;right:20px;">Sluiten</button>
+  <div class="footerInfoContent">
+
+  </div>
+</div>
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
