@@ -8,7 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const API_BASE = `${API_HOST}/api/admin`;
 
     // connect socket.io
-    const socket = io(API_HOST);
+    const socket = io(API_HOST, {
+        transports: ['websocket', 'polling'],
+        secure: true,
+        withCredentials: true
+    });
 
     // Check if user is already logged in (token exists in sessionStorage)
     const token = sessionStorage.getItem('adminToken');
